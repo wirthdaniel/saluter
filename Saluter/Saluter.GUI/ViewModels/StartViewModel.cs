@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Saluter.Data
+namespace Saluter.GUI.ViewModels
 {
-    interface IProductData
+    public class StartViewModel : ViewModelBase
     {
     }
 }
