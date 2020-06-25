@@ -10,6 +10,8 @@ namespace Saluter.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public List<int> Prices { get; set; }
+
         public int Price { get; set; }
         public List<Product> Accessories { get; set; }
 
@@ -17,7 +19,7 @@ namespace Saluter.Models
         {
             Id = id;
             Name = name;
-            Price = price;
+            Prices = new List<int>() { price, price * 2 };
 
             if (accessories != null)
             {
@@ -25,5 +27,8 @@ namespace Saluter.Models
                 Accessories.AddRange(accessories);
             }                
         }
+
+        
     }
+
 }

@@ -9,8 +9,8 @@ namespace Saluter.Data
 {
     public interface IProductData
     {
-        Product GetProductById(string id);
+        List<Product> GetProductsById(string id);
 
-        Product GetProductByName(string name);
+        List<Product> GetProductsByName(string name);
     }
 }

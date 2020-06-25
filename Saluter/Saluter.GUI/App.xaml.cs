@@ -29,6 +29,8 @@ namespace Saluter.GUI
 
             container.Register<OfferViewModel>();
 
+            container.Register<SelectedProductsViewModel>();
+
             container.Register<IProductData, InMemoryProductData>(Lifestyle.Singleton);
 
             container.GetInstance<MainWindow>().Show();

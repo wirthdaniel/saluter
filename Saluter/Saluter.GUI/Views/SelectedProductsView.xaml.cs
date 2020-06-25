@@ -1,5 +1,4 @@
-﻿using Saluter.GUI.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,20 +16,13 @@ using System.Windows.Shapes;
 namespace Saluter.GUI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SelectedProductsView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SelectedProductsView : UserControl
     {
-        public MainWindow(MainViewModel mainViewModel)
+        public SelectedProductsView()
         {
             InitializeComponent();
-
-            DataContext = mainViewModel;
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
         }
     }
 }

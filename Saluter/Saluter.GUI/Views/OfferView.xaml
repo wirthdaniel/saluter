@@ -2,10 +2,20 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Views="clr-namespace:Saluter.GUI.Views"
+             xmlns:ViewModels="clr-namespace:Saluter.GUI.ViewModels"
              xmlns:local="clr-namespace:Saluter.GUI.Views"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:SelectedProductsViewModel}">
+            <Views:SelectedProductsView/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -16,8 +26,8 @@
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.6*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -25,18 +35,32 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Column="0" Grid.Row="0">
+            <WrapPanel Grid.Column="0" Grid.Row="0" Margin="10 0 0 0">
                 <TextBox Width="200" Text="{Binding SearchText}"/>
-                <Button Content="Search" Command="{Binding SearchCommand}"/>
+                <ComboBox Width="60" Margin="10 0 0 0" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding CbSearchTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Width="60" Content="Search" Command="{Binding SearchCommand}" Padding="10 0 10 0" Margin="10 0 0 0"/>
+                <TextBlock Margin="10 0 0 0" Text="{Binding SearchMessage}" Foreground="PaleVioletRed"/>
             </WrapPanel>
 
-            <DataGrid Grid.Column="0" Grid.Row="1">
+            <DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Items}" CurrentItem="{Binding CurrentItem, Mode=OneWayToSource}" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Margin="10 10">
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id"  Binding="{Binding Id}" Width="1*"/>
                     <DataGridTextColumn Header="Name"  Binding="{Binding Name}" Width="2*"/>
                 </DataGrid.Columns>
+
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="PreviewMouseDoubleClick" Handler="DataGridRow_PreviewMouseDoubleClick"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
             </DataGrid>
-            
+
+            <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding Content}"/>
+
         </Grid>
     </Grid>
 </UserControl>

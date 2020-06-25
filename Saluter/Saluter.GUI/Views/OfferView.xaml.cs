@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Saluter.GUI.ViewModels;
+using Saluter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,24 @@ namespace Saluter.GUI.Views
         {
             InitializeComponent();
         }
+
+        private void DataGridRow_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var product = (sender as DataGridRow).Item;
+
+            (DataContext as OfferViewModel).ProductSelected((Product)product);
+        }
+
+        //private void Row_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var row = sender as DataGridRow;
+
+        //    var binding = new MouseBinding((DataContext as OfferViewModel).ProductSelectedCommand,
+        //            new MouseGesture() { MouseAction = MouseAction.LeftDoubleClick });
+
+        //    binding.CommandParameter = (DataContext as OfferViewModel).CurrentItem;
+
+        //    row.InputBindings.Add(binding);
+        //}
     }
 }

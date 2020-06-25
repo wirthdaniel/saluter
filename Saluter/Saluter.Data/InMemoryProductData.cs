@@ -19,14 +19,22 @@ namespace Saluter.Data
             new Product("EY-RC500F001", "Room controller unit", 62000),
         };
 
-        public Product GetProductById(string id)
+        public List<Product> GetProductsById(string id)
         {
-            return Products.FirstOrDefault(x => x.Id == id);
+            List<Product> products = new List<Product>();
+
+            products.AddRange(Products.Where(x => x.Id.Contains(id.ToUpper())).ToList());
+
+            return products;
         }
 
-        public Product GetProductByName(string name)
+        public List<Product> GetProductsByName(string name)
         {
-            return Products.FirstOrDefault(x => x.Name == name);
+            List<Product> products = new List<Product>();
+
+            products.AddRange(Products.Where(x => x.Name.ToUpper().Contains(name.ToUpper())).ToList());
+
+            return products;
         }
     }
 }
