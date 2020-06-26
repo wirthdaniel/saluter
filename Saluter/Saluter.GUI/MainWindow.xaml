@@ -7,8 +7,8 @@
         xmlns:ViewModels="clr-namespace:Saluter.GUI.ViewModels"
         xmlns:local="clr-namespace:Saluter.GUI"
         mc:Ignorable="d"
-        Title="Saluter" Height="768" Width="1024" Closing="Window_Closing"
-        >
+        WindowStartupLocation="CenterScreen"
+        Title="Saluter" Height="768" Width="1024" Closing="Window_Closing">
     <Window.Resources>
         <DataTemplate DataType="{x:Type ViewModels:StartViewModel}">
             <Views:StartView/>

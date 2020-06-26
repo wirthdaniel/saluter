@@ -152,6 +152,10 @@
       <Project>{5150247d-0215-4edb-8ee4-7121e670e07d}</Project>
       <Name>Saluter.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Saluter.Services\Saluter.Services.csproj">
+      <Project>{01741d26-1dba-4756-9842-df4f1662b123}</Project>
+      <Name>Saluter.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using Saluter.Models;
+﻿using Prism.Commands;
+using Saluter.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,10 +22,19 @@ namespace Saluter.GUI.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
+        public static DelegateCommand<string> DeleteProductCommand { get; set; }
+
         public SelectedProductsViewModel()
         {
             Items = new ObservableCollection<Product>();
+
+            DeleteProductCommand = new DelegateCommand<string>(DeleteProduct);
+        }
+
+        private void DeleteProduct(string id)
+        {
+            Items.Remove(Items.Single(x => x.Id == id));
         }
 
     }

@@ -2,6 +2,7 @@
 using Saluter.Data;
 using Saluter.Models;
 using Saluter.Models.Enums;
+using Saluter.Services.EventAggregatorService;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -90,6 +91,8 @@ namespace Saluter.GUI.ViewModels
 
         public DelegateCommand SearchCommand { get; set; }
 
+        public DelegateCommand CloseOfferViewCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -99,6 +102,8 @@ namespace Saluter.GUI.ViewModels
             this.productData = productData;
 
             SearchCommand = new DelegateCommand(Search);
+
+            CloseOfferViewCommand = new DelegateCommand(CloseOfferView);
 
             foreach (var value in Enum.GetValues(typeof(SearchType)))
             {
@@ -137,6 +142,20 @@ namespace Saluter.GUI.ViewModels
         public void ProductSelected(Product selectedProduct)
         {
             Content.Items.Add(selectedProduct);
+        }
+
+        private void CloseOfferView()
+        {
+            ClearViewModel();
+
+            EventAggregatorService.GetInstance().GetEvent<CloseOfferViewEvent>().Publish();
+        }
+
+        private void ClearViewModel()
+        {
+            Items?.Clear();
+            SearchText = string.Empty;
+            Content.Items?.Clear();
         }
 
         #endregion

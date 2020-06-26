@@ -22,7 +22,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <Button Grid.Row="0" Width="20" HorizontalAlignment="Right" Content="X"/>
+        <Button Command="{Binding CloseOfferViewCommand}" Grid.Row="0" Width="20" HorizontalAlignment="Right" Content="X"/>
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -31,16 +31,26 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Column="0" Grid.Row="0" Margin="10 0 0 0">
-                <TextBox Width="200" Text="{Binding SearchText}"/>
-                <ComboBox Width="60" Margin="10 0 0 0" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding CbSearchTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Width="60" Content="Search" Command="{Binding SearchCommand}" Padding="10 0 10 0" Margin="10 0 0 0"/>
-                <TextBlock Margin="10 0 0 0" Text="{Binding SearchMessage}" Foreground="PaleVioletRed"/>
-            </WrapPanel>
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="0" Height="24" Margin="10 4" Text="{Binding SearchText}"/>
+                <ComboBox Grid.Column="1" Height="24" Margin="10 4" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding CbSearchTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2" Height="24" Margin="10 4" Content="Search" Command="{Binding SearchCommand}" Padding="8 0 8 0"/>
+                <TextBlock Grid.Row="1" Margin="10 0 0 0" Text="{Binding SearchMessage}" Foreground="PaleVioletRed"/>
+            </Grid>
 
             <DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Items}" CurrentItem="{Binding CurrentItem, Mode=OneWayToSource}" 
                       AutoGenerateColumns="False"

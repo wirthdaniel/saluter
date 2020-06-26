@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleInjector;
+using Saluter.Services.EventAggregatorService;
 
 namespace Saluter.GUI.ViewModels
 {
@@ -28,6 +29,8 @@ namespace Saluter.GUI.ViewModels
             }
         }
 
+        public StartViewModel StartViewModel { get; set; }
+
         public OfferViewModel OfferViewModel { get; set; }
 
         #endregion
@@ -44,9 +47,13 @@ namespace Saluter.GUI.ViewModels
         {            
             NewOfferCommand = new DelegateCommand(NewOffer);
 
+            StartViewModel = startViewModel;
+
             OfferViewModel = offerViewModel;
 
             Content = startViewModel;
+
+            EventAggregatorService.GetInstance().GetEvent<CloseOfferViewEvent>().Subscribe(CloseOfferView);
         }
 
         #endregion
@@ -56,6 +63,11 @@ namespace Saluter.GUI.ViewModels
         private void NewOffer()
         {
             Content = OfferViewModel;
+        }
+
+        private void CloseOfferView()
+        {
+            Content = StartViewModel;
         }
 
         #endregion
