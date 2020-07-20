@@ -46,17 +46,31 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Column="0" Height="24" Margin="10 4" Text="{Binding SearchText}"/>
+                <TextBox Grid.Column="0" Height="24" Margin="10 4" Text="{Binding SearchText}" />
                 <ComboBox Grid.Column="1" Height="24" Margin="10 4" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding CbSearchTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="2" Height="24" Margin="10 4" Content="Search" Command="{Binding SearchCommand}" Padding="8 0 8 0"/>
                 <TextBlock Grid.Row="1" Margin="10 0 0 0" Text="{Binding SearchMessage}" Foreground="PaleVioletRed"/>
+            </Grid>
+
+            <Grid Grid.Column="2" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Height="24" Margin="10 4" Text="Customer:"/>
+                <ComboBox Grid.Column="1" Height="24" Margin="10 4" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding CbSearchTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
 
             <DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Items}" CurrentItem="{Binding CurrentItem, Mode=OneWayToSource}" 
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       Margin="10 10">
-                
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id"  Binding="{Binding Id}" Width="1*"/>
                     <DataGridTextColumn Header="Name"  Binding="{Binding Name}" Width="2*"/>
