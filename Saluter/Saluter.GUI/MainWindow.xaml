@@ -30,6 +30,8 @@
                         <MenuItem Header="BOQ" Command="{Binding NewBOQCommand}"/>
                     </MenuItem>
                     <Separator/>
+                    <MenuItem Header="Export Offer to PDF" Command="{Binding ExportOfferToPdfCommand}"/>
+                    <Separator/>
                     <MenuItem Header="Exit" />
                 </MenuItem>
             </Menu>

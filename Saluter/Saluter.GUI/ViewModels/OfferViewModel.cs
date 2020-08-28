@@ -1,5 +1,7 @@
-﻿using Prism.Commands;
+﻿using AutoMapper;
+using Prism.Commands;
 using Saluter.Data;
+using Saluter.GUI.Models;
 using Saluter.Models;
 using Saluter.Models.Enums;
 using Saluter.Services.EventAggregatorService;
@@ -18,6 +20,10 @@ namespace Saluter.GUI.ViewModels
         #region Fields
 
         private readonly IProductData productData;
+
+        private readonly ICustomerData customerData;
+
+        private readonly IMapper mapper;
 
         private ObservableCollection<Product> _items;
 
@@ -75,12 +81,37 @@ namespace Saluter.GUI.ViewModels
             }
         }
 
+        private ObservableCollection<Customer> _customers;
+
+        public ObservableCollection<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public SelectedProductsViewModel Content
         {
             get { return _content; }
             set
             {
                 _content = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Customer _selectedCustomer;
+
+        public Customer SelectedCustomer
+        {
+            get { return _selectedCustomer; }
+            set
+            {
+                _selectedCustomer = value;
                 OnPropertyChanged();
             }
         }
@@ -97,9 +128,13 @@ namespace Saluter.GUI.ViewModels
 
         #region Constructor
 
-        public OfferViewModel(IProductData productData, SelectedProductsViewModel selectedProductsViewModel)
+        public OfferViewModel(IProductData productData, ICustomerData customerData, IMapper mapper, SelectedProductsViewModel selectedProductsViewModel)
         {
             this.productData = productData;
+
+            this.customerData = customerData;
+
+            this.mapper = mapper;
 
             SearchCommand = new DelegateCommand(Search);
 
@@ -110,10 +145,13 @@ namespace Saluter.GUI.ViewModels
                 SearchTypes.Add(value.ToString());
             }
 
-            CbSearchTypeSelectedItem = SearchTypes.First();
+            _cbSearchTypeSelectedItem = SearchTypes.First();
 
-            Content = selectedProductsViewModel;
-            
+            _content = selectedProductsViewModel;
+
+            _customers = new ObservableCollection<Customer>();
+
+            customerData.GetAllCustomers().ForEach(x => _customers.Add(x));
         }
 
         #endregion
@@ -139,9 +177,14 @@ namespace Saluter.GUI.ViewModels
             }          
         }
 
-        public void ProductSelected(Product selectedProduct)
+        public void AddProduct(Product selectedProduct)
         {
-            Content.Items.Add(selectedProduct);
+            var selectedProductDisplayModel = mapper.Map<Product, SelectedProductDisplayModel>(selectedProduct);
+
+            if (Content.Items == null)
+                Content.Items = new ObservableCollection<SelectedProductDisplayModel>();
+
+            Content.Items.Add(selectedProductDisplayModel);
         }
 
         private void CloseOfferView()

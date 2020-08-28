@@ -1,8 +1,10 @@
 ﻿using Prism.Commands;
+using Saluter.GUI.Models;
 using Saluter.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +13,9 @@ namespace Saluter.GUI.ViewModels
 {
     public class SelectedProductsViewModel : ViewModelBase
     {
-        private ObservableCollection<Product> _items;
+        private ObservableCollection<SelectedProductDisplayModel> _items;
 
-        public ObservableCollection<Product> Items
+        public ObservableCollection<SelectedProductDisplayModel> Items
         {
             get { return _items; }
             set
@@ -27,8 +29,6 @@ namespace Saluter.GUI.ViewModels
 
         public SelectedProductsViewModel()
         {
-            Items = new ObservableCollection<Product>();
-
             DeleteProductCommand = new DelegateCommand<string>(DeleteProduct);
         }
 

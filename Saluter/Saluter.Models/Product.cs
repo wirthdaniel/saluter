@@ -11,8 +11,6 @@ namespace Saluter.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public List<int> Prices { get; set; }
-
-        public int Price { get; set; }
         public List<Product> Accessories { get; set; }
 
         public Product(string id, string name, int price, List<Product> accessories = null)

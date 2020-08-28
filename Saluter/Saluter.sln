@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saluter.Data", "Saluter.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saluter.Services", "Saluter.Services\Saluter.Services.csproj", "{01741D26-1DBA-4756-9842-DF4F1662B123}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saluter.Tests", "Saluter.Tests\Saluter.Tests.csproj", "{232AE5CB-E727-4DF3-82E7-56DE9571B827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{01741D26-1DBA-4756-9842-DF4F1662B123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01741D26-1DBA-4756-9842-DF4F1662B123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01741D26-1DBA-4756-9842-DF4F1662B123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232AE5CB-E727-4DF3-82E7-56DE9571B827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232AE5CB-E727-4DF3-82E7-56DE9571B827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232AE5CB-E727-4DF3-82E7-56DE9571B827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232AE5CB-E727-4DF3-82E7-56DE9571B827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

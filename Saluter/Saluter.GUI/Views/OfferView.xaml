@@ -63,10 +63,10 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Height="24" Margin="10 4" Text="Customer:"/>
-                <ComboBox Grid.Column="1" Height="24" Margin="10 4" ItemsSource="{Binding SearchTypes}" SelectedItem="{Binding CbSearchTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="1" Height="24" Margin="10 4" ItemsSource="{Binding Path=Customers}" DisplayMemberPath="Name" SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
 
-            <DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Items}" CurrentItem="{Binding CurrentItem, Mode=OneWayToSource}" 
+            <DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Items}" CurrentItem="{Binding Path=CurrentItem, Mode=OneWayToSource}" 
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       Margin="10 10">

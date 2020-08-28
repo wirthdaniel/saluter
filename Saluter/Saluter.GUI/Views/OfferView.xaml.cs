@@ -31,19 +31,7 @@ namespace Saluter.GUI.Views
         {
             var product = (sender as DataGridRow).Item;
 
-            (DataContext as OfferViewModel).ProductSelected((Product)product);
+            (DataContext as OfferViewModel).AddProduct((Product)product);
         }
-
-        //private void Row_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var row = sender as DataGridRow;
-
-        //    var binding = new MouseBinding((DataContext as OfferViewModel).ProductSelectedCommand,
-        //            new MouseGesture() { MouseAction = MouseAction.LeftDoubleClick });
-
-        //    binding.CommandParameter = (DataContext as OfferViewModel).CurrentItem;
-
-        //    row.InputBindings.Add(binding);
-        //}
     }
 }

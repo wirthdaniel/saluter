@@ -7,23 +7,46 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid Margin="10 10" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectionUnit="Cell" CanUserReorderColumns="False">
+        <DataGrid Margin="10 10" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectionUnit="Cell" CanUserReorderColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" Width="1*"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"/>
-                <DataGridTextColumn Header="Qty" Binding="{Binding Quantity}" Width="0.5*"/>
+
+                <DataGridTemplateColumn Header="Qty" Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn Header="Unit price">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Prices}" SelectedItem="{Binding Price}" 
+                            <ComboBox ItemsSource="{Binding Prices, Mode=TwoWay}" SelectedItem="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                       IsEditable="True"
                                       IsReadOnly="True"
                                       Text="-- Select price --"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Mult." Binding="{Binding Quantity}" Width="0.5*"/>
-                <DataGridTextColumn Header="Total" IsReadOnly="True" Binding="{Binding TotalPrice}" Width="1*"/>
+
+                <DataGridTemplateColumn Header="Mult." Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Multiplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Total" Width="1*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding TotalPrice, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -9,6 +9,10 @@ using SimpleInjector;
 using Saluter.Data;
 using Saluter.GUI.Views;
 using Saluter.GUI.ViewModels;
+using AutoMapper;
+using Saluter.Models;
+using Saluter.GUI.Models;
+using Saluter.Services.PdfServices;
 
 namespace Saluter.GUI
 {
@@ -33,7 +37,25 @@ namespace Saluter.GUI
 
             container.Register<IProductData, InMemoryProductData>(Lifestyle.Singleton);
 
+            container.Register<ICustomerData, InMemoryCustomerData>(Lifestyle.Singleton);
+
+            container.Register<IPdfExporter, PdfExporter>();
+
+            container.RegisterInstance(GetMapper());
+
             container.GetInstance<MainWindow>().Show();
         }
+
+        private IMapper GetMapper()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Product, SelectedProductDisplayModel>();
+                cfg.CreateMap<SelectedProductDisplayModel, SelectedProduct>();
+            });
+
+            return config.CreateMapper();            
+        }
+
     }
 }

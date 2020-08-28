@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InMemoryCustomerData.cs" />
     <Compile Include="InMemoryProductData.cs" />
     <Compile Include="Interfaces\ICustomerData.cs" />
     <Compile Include="Interfaces\IProductData.cs" />
